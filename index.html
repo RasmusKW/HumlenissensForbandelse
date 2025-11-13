@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <title>Wedels Øl-julemysterie 🎄</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="snow"></div>
+  <div class="container">
+    <h1>🎅Julebryggeriets Forbandelse🍺</h1>
+    <p>🎄<strong>Stærkt</strong>🎄<br> Du har fundet frem til brygmesterens gamle kælder.<br><br>
+      I kælderen finder du 4 døre. <br>På hver af dørene hænger der en kodelås.<br>
+    <p>På gulvet finder du et gammelt stykke pergamentpapir med teksten<br>
+      <em>"4 døre, 4 prøver - 3 gåder, 3 tal."</em>
+       </p>
+
+    <div class="links">
+      <a href="advent1.html">⭐ 1. Advent ⭐</a>
+      <a href="advent2.html">🎁 2. Advent 🎁</a>
+      <a href="advent3.html">🎄 3. Advent 🎄</a>
+      <a href="advent4.html">🎅 4. Advent 🎅</a>
+    </div>
+
+    <p class="footer">© Wedels Advents Kalender 2025 · Julebryggeriets Forbandelse</p>
+  </div>
+  <script>
+  // 🔒 Advent unlock dates (YYYY-MM-DD)
+  const unlockDates = {
+    1: "2025-11-09",  // 1. Advent
+    2: "2025-11-09",  // 2. Advent
+    3: "2025-11-09",  // 3. Advent
+    4: "2025-11-09"   // 4. Advent
+  };
+
+  const today = new Date();
+  const links = document.querySelectorAll(".links a");
+
+  links.forEach(link => {
+    const advent = link.textContent.match(/(\d)\./)?.[1];
+    if (!advent) return;
+
+    const unlockDate = new Date(unlockDates[advent]);
+
+    if (today < unlockDate) {
+      // Before unlock date → locked
+      link.classList.add("locked");
+      link.addEventListener("click", e => e.preventDefault());
+      link.style.cursor = "not-allowed";
+      link.title = `Låses op ${unlockDate.toLocaleDateString("da-DK")}`;
+    }
+  });
+</script>
+
+</body>
+</html>

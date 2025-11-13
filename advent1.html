@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <title>1. Advent – Brygmesterens Kode Rød</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="snow"></div>
+  <div class="container">
+    <h1>⭐ 1. Advent ⭐<br>🍒 Brygmesterens Kode Rød 🍒</h1>
+    <p>Du kigger på kodelåsen til den første dør, har du hvad der skal til?</p>
+
+    <div class="code-inputs">
+      <input type="number" id="digit1" min="0" max="9">
+      <input type="number" id="digit2" min="0" max="9">
+      <input type="number" id="digit3" min="0" max="9">
+    </div>
+
+    <button class="check-code" onclick="checkCode()">Tjek Kode</button>
+    <p id="result"></p>
+    <a href="index.html" class="back">⬅ Tilbage til brygmesterens kælder</a>
+  </div>
+
+  <script>
+    const correctCode = "472";
+
+    function checkCode() {
+      const code =
+        document.getElementById("digit1").value +
+        document.getElementById("digit2").value +
+        document.getElementById("digit3").value;
+      const result = document.getElementById("result");
+      if (code === correctCode) {
+        result.textContent = "✅ Med et *klik* går låsen op og døren åbner. Bag den står hvad du finder i din pakke 🍚🍒🍻";
+        result.className = "success";
+      } else {
+        result.textContent = "❌ Forkert kode...";
+        result.className = "fail";
+      }
+    }
+  </script>
+</body>
+</html>

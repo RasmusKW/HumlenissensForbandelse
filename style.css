@@ -1,0 +1,261 @@
+/* 🌌 Night-sky background */
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #f5f5f5;
+  background: linear-gradient(#0b1d3a 30%, #1b2735 100%);
+  overflow: hidden;
+}
+
+/* ❄️ Denser, slower layered snow */
+.snow,
+.snow::before,
+.snow::after {
+  position: absolute;
+  top: -600px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  content: "";
+  background-image:
+    radial-gradient(2px 2px at 20px 30px, rgba(255,255,255,0.8) 50%, transparent),
+    radial-gradient(3px 3px at 150px 120px, rgba(255,255,255,0.6) 50%, transparent),
+    radial-gradient(2.5px 2.5px at 320px 250px, rgba(255,255,255,0.7) 50%, transparent),
+    radial-gradient(1.5px 1.5px at 500px 400px, rgba(255,255,255,0.5) 50%, transparent),
+    radial-gradient(2px 2px at 200px 550px, rgba(255,255,255,0.75) 50%, transparent),
+    radial-gradient(3px 3px at 450px 600px, rgba(255,255,255,0.65) 50%, transparent),
+    radial-gradient(2px 2px at 80px 100px, rgba(255,255,255,0.7) 50%, transparent),
+    radial-gradient(3px 3px at 250px 300px, rgba(255,255,255,0.6) 50%, transparent),
+    radial-gradient(2px 2px at 480px 500px, rgba(255,255,255,0.8) 50%, transparent),
+    radial-gradient(1.8px 1.8px at 350px 80px, rgba(255,255,255,0.7) 50%, transparent),
+    radial-gradient(2.5px 2.5px at 120px 450px, rgba(255,255,255,0.65) 50%, transparent),
+    radial-gradient(3px 3px at 550px 200px, rgba(255,255,255,0.75) 50%, transparent);
+  background-size: 600px 600px;
+  animation: snowFall 50s linear infinite; /* slower fall */
+}
+
+.snow::after {
+  opacity: 0.4;
+  margin-left: -200px;
+  filter: blur(3px);
+  animation-duration: 90s;
+  animation-direction: reverse;
+}
+
+.snow::before {
+  opacity: 0.65;
+  margin-left: -300px;
+  filter: blur(1.5px);
+  animation-duration: 120s;
+  animation-direction: reverse;
+}
+
+@keyframes snowFall {
+  to {
+    transform: translateY(600px);
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    max-width: 90%;
+  }
+}
+
+/* 🎄 Container and text styling */
+.container {
+  text-align: center;
+  background: rgba(255, 253, 248, 0.12);
+  border: 2px solid #d3b673;
+  border-radius: 16px;
+  padding: 2rem 3rem;
+  box-shadow: 0 4px 25px rgba(0,0,0,0.4);
+  max-width: 600px;
+  position: relative;
+  z-index: 1;
+  backdrop-filter: blur(6px);
+}
+h1 {
+  margin-bottom: 1rem;
+  color: #ffd77d;
+  text-shadow: 0 0 10px rgba(255,215,125,0.5);
+}
+
+p {
+  color: #f2f2f2;
+}
+
+.code-inputs input {
+  width: 60px;
+  font-size: 2rem;
+  text-align: center;
+  margin: 0.3rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  padding: 0.3rem;
+}
+
+button {
+  margin-top: 1rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: linear-gradient(180deg, #d63b1e 0%, #a31308 100%);
+  color: #fffdfa;
+  border: 2px solid #ffd77d;
+  border-radius: 10px;
+  padding: 0.7rem 1.5rem;
+  cursor: pointer;
+  box-shadow:
+    0 3px 6px rgba(0, 0, 0, 0.3),
+    0 0 8px rgba(255, 215, 125, 0.4);
+  text-shadow: 0 0 4px rgba(255,255,255,0.3);
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* ✨ subtle shine animation */
+button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -75%;
+  width: 50%;
+  height: 100%;
+  background: linear-gradient(120deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0) 80%);
+  transform: skewX(-25deg);
+  transition: all 0.5s;
+}
+
+button:hover::before {
+  left: 125%;
+}
+
+button:hover {
+  background: linear-gradient(180deg, #e63f1a 0%, #b0160a 100%);
+  transform: scale(1.05);
+  box-shadow:
+    0 0 12px rgba(255, 215, 125, 0.7),
+    0 3px 10px rgba(0,0,0,0.3);
+}
+
+
+.success {
+  color: #9be69b;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+.fail {
+  color: #ff6b6b;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+/* 🚪 Advent door buttons */
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem auto;
+}
+
+.links a {
+  display: inline-block;
+  width: 180px;
+  height: 90px;
+  padding: 1rem;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #3b2b19 0%, #24180c 100%);
+  color: #f3e7c9;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.1rem;
+  border: 2px solid hsl(35, 35%, 53%);
+  box-shadow:
+    inset 0 0 8px rgba(0,0,0,0.6),
+    0 4px 8px rgba(0,0,0,0.3);
+  text-align: center;
+  align-content: space-evenly;
+  line-height: 60px;
+  position: relative;
+  transition: all 0.25s ease;
+  font-family: "Cinzel", serif;
+  flex: 1 1 calc(50% - 1rem);
+  max-width: 200px;
+}
+/* Locked door style */
+.links a.locked {
+  background: linear-gradient(135deg, #1a1208 0%, #0f0803 100%);
+  border-color: #6a5a3a;
+  color: #7a6d58;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.7);
+  pointer-events: none;
+  filter: brightness(0.6);
+  transition: none;
+}
+
+/* Remove hover glow on locked doors */
+.links a.locked:hover {
+  transform: none;
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.7);
+}
+
+
+/* wood grain texture */
+.links a::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background-image: repeating-linear-gradient(
+    45deg,
+    rgba(255,255,255,0.05) 0 2px,
+    transparent 2px 4px
+  );
+  opacity: 0.3;
+  pointer-events: none;
+  border-radius: 8px;
+}
+
+/* hover glow */
+.links a:hover {
+  background: linear-gradient(135deg, #5a3a1f 0%, #2e1f11 100%);
+  box-shadow:
+    0 0 15px rgba(255,215,125,0.4),
+    inset 0 0 12px rgba(255,215,125,0.3);
+  transform: translateY(-2px);
+  color: #fff8e1;
+}
+
+/* press animation */
+.links a:active {
+  transform: translateY(2px);
+  box-shadow: inset 0 0 12px rgba(0,0,0,0.6);
+}
+
+/* Responsive: stack vertically on small screens */
+@media (max-width: 500px) {
+  .links a {
+    flex: 1 1 100%;
+    max-width: none;
+  }
+}
+
+/* Footer and back link */
+.footer {
+  font-size: 0.8rem;
+  margin-top: 1rem;
+  color: #ccc;
+}
+
+.back {
+  display: block;
+  margin-top: 1.5rem;
+  color: #bbb;
+  text-decoration: none;
+}
