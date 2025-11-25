@@ -25,26 +25,33 @@
 
     <p class="footer">© Wedels Advents Kalender 2025 · Humlenissen's Forbandelse</p>
   </div>
-  <script>
-  // 🔒 Advent unlock dates (YYYY-MM-DD)
+<script>
+  // 🔒 Advent unlock dates (YYYY-MM-DD) — DK advent 2025
   const unlockDates = {
-    1: "2025-11-09",  // 1. Advent
-    2: "2025-11-09",  // 2. Advent
-    3: "2025-11-09",  // 3. Advent
-    4: "2025-11-09"   // 4. Advent
+    1: "2025-11-30",  // 1. søndag i advent
+    2: "2025-12-07",  // 2. søndag i advent
+    3: "2025-12-14",  // 3. søndag i advent
+    4: "2025-12-21"   // 4. søndag i advent
   };
 
+  // Dansk lokal tid (browserens egen tidszone)
   const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
   const links = document.querySelectorAll(".links a");
 
   links.forEach(link => {
-    const advent = link.textContent.match(/(\d)\./)?.[1];
-    if (!advent) return;
+    const match = link.textContent.match(/(\d)\./);
+    if (!match) return;
 
-    const unlockDate = new Date(unlockDates[advent]);
+    const advent = match[1];
+
+    // Opret dato i *lokal tid* (DK), ikke UTC
+    const unlockDate = new Date(unlockDates[advent] + "T00:00:00");
+    unlockDate.setHours(0, 0, 0, 0);
 
     if (today < unlockDate) {
-      // Before unlock date → locked
+      // Før unlock-dato → låst
       link.classList.add("locked");
       link.addEventListener("click", e => e.preventDefault());
       link.style.cursor = "not-allowed";
